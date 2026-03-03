@@ -1,0 +1,111 @@
+#include <stdio.h>
+#define num 2
+struct employee{
+    int eno;
+    float sal;
+    char ename[50];
+    char prev[5][50];
+}e;
+int main() 
+{
+    int m;
+    scanf("%d",&m);
+    struct employee e[m];
+    int i,j,count=0,choice,n,id;
+    printf("employee:\n");
+    while (1)
+    {
+        
+    printf("1.ADD EMPLOYEE:\n");
+    printf("2.UPDATE EMPLOYEE:\n");
+    printf("3.DELETE EMPLOYEE:\n");
+    printf("4.DISPLAY EMPLOYEE:\n");
+    printf("5.EXIT\n");
+    printf("enter your choice[1-5]:");
+    
+    scanf("%d",&choice);
+  
+        switch (choice)
+        {
+            case 1:
+                for(i=0;i<m;i++)
+                {
+                    printf("enter the employee no:\n");
+                    scanf("%d",&e[count].eno);
+                    printf("enter the employee salary:\n");
+                    scanf("%f",&e[count].sal);
+                    printf("enter the employee name:\n");
+                    scanf("%s",e[count].ename);
+                    for(j=0;j<num;j++)
+                    {
+                        printf("job %d:",j+1);
+                        scanf("%s",e[i].prev[j]);
+                    }
+                    
+                    count++;
+                }
+                printf("successful!\n");
+                break;
+            case 2:
+                printf("enter the id to update:\n");
+                scanf("%d",&id);
+                for(i=0;i<m;i++)
+                {
+                    if(e[i].eno==id)
+                    {
+                        printf("enter the new salary:\n");
+                        scanf("%f",&e[i].sal);
+                        printf("successfully updated!\n");
+                        break;
+                    }
+                   
+                }
+                if(i==count)
+                {
+                    printf("employee not found!\n");
+                }
+                break;
+            case 3:
+                printf("enter the id to delete:\n");
+                scanf("%d",&id);
+                for(i=0;i<m;i++)
+                {
+                    if(e[i].eno==id)
+                    {
+                       for(j=i;j<count-1;j++)
+                       {
+                           e[j]=e[j+1];
+                       }
+                       count--;
+                       printf("succesfully deleted\n");
+                       break;
+                    }
+                    break;
+                }   
+                if(i==count)
+                {
+                    printf("employee not found!\n");
+                }
+                break;
+            case 4:
+                for(i=0;i<count;i++)
+                {
+                    printf("employee ID %d\n",e[i].eno);
+                    printf("EMPLOYEE SALARY %f\n",e[i].sal);
+                    printf("EMPLOYEE NAME %s\n",e[i].ename);
+                    for(j=0;j<num;j++)
+                    {
+                        printf("job %d is %s\n",j+1,e[i].prev[j]);
+                    }
+                }
+                break;
+            case 5:
+                printf("you are exiting...");
+                return 0;
+            default:
+                printf(" invalid choice!!\n");
+            
+        }
+    }
+    return  0;
+}
